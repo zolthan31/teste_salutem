@@ -8,6 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "tb_pessoa") 
@@ -18,10 +23,15 @@ public class Pessoa implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotEmpty(message = "{campo nome obrigatorio}")
 	private String nome;
 	
-	
+	@NotNull
+	@CPF(message = "{campo cpf obrigatorio}")
 	private String cpf;
+	
+	@NotNull
 	private String data;
 	
 	public Pessoa() {		
