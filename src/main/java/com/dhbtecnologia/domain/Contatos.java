@@ -7,21 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.br.CPF;
-
 
 
 @Entity
-@Table(name = "tb_pessoa") 
-public class Pessoa implements Serializable{		
+@Table(name = "tb_contatos")
+public class Contatos implements Serializable{		
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -29,23 +25,21 @@ public class Pessoa implements Serializable{
 	@NotEmpty(message = "{campo.nome.obrigatorio}")
 	private String nome;
 	
-	@NotNull(message = "{campo.cpf.obrigatorio}")
-	@CPF(message = "{campo.cpf.invalido}")
-	private String cpf;
+	@NotNull(message = "{campo.telefone.obrigatorio}")
+	private String telefone;
 	
-	@NotNull(message = "{campo.data.obrigatorio}")
-	private String data;
+	@NotNull(message = "{campo.email.obrigatorio}")
+	private String email;
 	
-	
-	public Pessoa() {		
+	public Contatos() {		
 	}
 
-	public Pessoa(Long id, String nome, String cpf, String data) {
+	public Contatos(Long id, String nome, String telefone, String email) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.cpf = cpf;
-		this.data = data;
+		this.telefone = telefone;
+		this.email = email;
 	}
 
 	public Long getId() {
@@ -64,20 +58,20 @@ public class Pessoa implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public String getData() {
-		return data;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
@@ -93,7 +87,7 @@ public class Pessoa implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		Contatos other = (Contatos) obj;
 		return Objects.equals(id, other.id);
 	}
 	
