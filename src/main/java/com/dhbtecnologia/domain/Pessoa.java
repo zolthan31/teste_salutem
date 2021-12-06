@@ -1,18 +1,24 @@
 package com.dhbtecnologia.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 
 
@@ -36,6 +42,9 @@ public class Pessoa implements Serializable{
 	@NotNull(message = "{campo.data.obrigatorio}")
 	private String data;
 	
+	@JsonIgnore
+    @OneToMany(mappedBy = "pessoa")
+	private List<Contatos> contatos =  new ArrayList<>();
 	
 	public Pessoa() {		
 	}
@@ -79,6 +88,10 @@ public class Pessoa implements Serializable{
 	public void setData(String data) {
 		this.data = data;
 	}
+	
+	public List<Contatos> getContatos() {
+		return contatos;
+	}
 
 	@Override
 	public int hashCode() {
@@ -96,6 +109,8 @@ public class Pessoa implements Serializable{
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 	
 	
 
