@@ -23,5 +23,9 @@ public class ContatosService {
 		Optional<Contatos> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public Contatos insert(Contatos obj) {
+		return repository.save(obj);
+	}
 
 }
