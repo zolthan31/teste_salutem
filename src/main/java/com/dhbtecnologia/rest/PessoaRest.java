@@ -43,7 +43,7 @@ public class PessoaRest {
 		return service.insert(obj);
 	}
 	
-	@PutMapping( path = "/{id}")
+	@PutMapping(path = "/{id}")
 	public Pessoa update(@PathVariable Long id, @RequestBody Pessoa obj) {
 		return service.update(id, obj);
 	}
